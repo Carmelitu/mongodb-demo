@@ -17,8 +17,8 @@ const Curso = mongoose.model('Curso', cursoSchema);
 
 const crearCurso = async () => {
     const curso = new Curso({
-        nombre: 'Node.JS',
-        autor: 'Seiji',
+        nombre: 'Express.js',
+        autor: 'Carmelo',
         etiquetas: ['js', 'frontend'],
         publicado: true
     });
@@ -66,5 +66,11 @@ const actualizarCurso = async id => {
 
 }
 
-actualizarCurso('61510cf79a4962a028b4aee7');
+//actualizarCurso('61510cf79a4962a028b4aee7');
 
+const eliminarCurso = async id => {
+    const resultado = await Curso.deleteOne({_id: id});
+    console.log(resultado);
+}
+
+//eliminarCurso('61510cf79a4962a028b4aee7');
