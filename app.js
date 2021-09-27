@@ -15,7 +15,7 @@ const cursoSchema =  new Schema({
 
 const Curso = mongoose.model('Curso', cursoSchema);
 
-async function crearCurso(){
+const crearCurso = async () => {
     const curso = new Curso({
         nombre: 'Node.JS',
         autor: 'Seiji',
@@ -27,4 +27,16 @@ async function crearCurso(){
     console.log(resultado);
 }
 
-crearCurso();
+//crearCurso();
+
+const listarCursos = async () => {
+    const cursos = await Curso
+        .find({publicado: true})
+        .limit(10)
+        .sort({nombre: 1})
+        .select({nombre: 1, etiquetas: 1});
+
+    console.log(cursos);
+}
+
+listarCursos();
