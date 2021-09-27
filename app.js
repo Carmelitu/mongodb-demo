@@ -34,9 +34,37 @@ const listarCursos = async () => {
         .find({publicado: true})
         .limit(10)
         .sort({nombre: 1})
-        .select({nombre: 1, etiquetas: 1});
+        .select({nombre: 1, autor: 1, etiquetas: 1});
 
     console.log(cursos);
 }
 
-listarCursos();
+//listarCursos();
+
+const actualizarCurso = async id => {
+    /*
+    const curso = await Curso.findById(id);
+
+    if(!curso){
+        console.log('Curso no encontrado');
+        return;
+    }
+
+    curso.autor = 'Seiji';
+
+    const resultado = await curso.save();
+    */
+   
+    const resultado = await Curso.findOneAndUpdate(id, {
+        $set:{
+            autor: 'Carmelo',
+            publicado: true
+        }
+    }, {new: true});
+
+    console.log(resultado);
+
+}
+
+actualizarCurso('61510cf79a4962a028b4aee7');
+
